@@ -1,5 +1,4 @@
 name: Java CI with Maven
-
 on:
   push:
     branches: [ "main" ]
@@ -8,10 +7,17 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
     - uses: JoaoCavalcanti15/academy/.github/actions/maven_build@main
     - uses: JoaoCavalcanti15/academy/.github/actions/docker_build@main
+      with:
+        dockerfile_path: ./src/main/docker/Dockerfile.jvm
+        image_name: academy
+        tag_name: my-custom-tag  
+        
+    - uses: JoaoCavalcanti15/academy/.github/actions/docker_build@main
+      with:
+        image_name: academy  

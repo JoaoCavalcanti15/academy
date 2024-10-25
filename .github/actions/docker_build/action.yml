@@ -5,16 +5,37 @@ inputs:
     description: "Path to the Dockerfile"
     required: false
     default: "Dockerfile"
+  image_name:
+    description: "Name for the generated Docker image"
+    required: true
+  tag_name:
+    description: "Tag to be added to the final image"
+    required: false
+
 runs:
   using: composite
   steps:
     - run: |
         echo "Update me with the necessary steps to build the application"
       shell: bash
+      
+    - name: Determine Docker tag
+      id: docker_tag
+      shell: bash
+      run: |
+        if [ -z "${{ inputs.tag_name }}" ]; then
+            echo "TAG=$(date +%s)" >> $GITHUB_ENV
+        else
+            echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
+        fi
+
     - name: Create new Docker image
       shell: bash
-      run: docker build . --file ./src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
+      run: |
+        IMAGE_NAME="${{ inputs.image_name }}:${{ env.TAG }}"
+        echo "DOCKER_IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
+        docker build . --file "${{ inputs.dockerfile_path }}" --tag "$IMAGE_NAME"
+
     - name: List Docker images
       shell: bash
       run: docker images
-      
