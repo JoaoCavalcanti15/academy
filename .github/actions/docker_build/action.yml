@@ -34,7 +34,7 @@ runs:
       run: |
         IMAGE_NAME="${{ inputs.image_name }}:${{ env.TAG }}"
         echo "DOCKER_IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
-        docker build . --file "${{ inputs.dockerfile_path }}" --tag "$IMAGE_NAME"
+        docker build . --file "${{ inputs.path_dockerfile }}" --tag "$IMAGE_NAME"
 
     - name: List Docker images
       shell: bash
