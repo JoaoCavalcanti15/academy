@@ -16,7 +16,7 @@ jobs:
       with:
         path_dockerfile: ./src/main/docker/Dockerfile.jvm
         image_name: "academy"
-        tag_name: "my-custom-tag"  
+        tag_name: "academy"  
     - uses: JoaoCavalcanti15/academy/.github/actions/docker_push@main
       with:
         docker_image: "academy"
