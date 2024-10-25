@@ -18,5 +18,6 @@ runs:
         echo "Update me with the necessary steps to build the application"
       shell: bash
     - name: Build with Maven
+      shell: bash
       run: mvn -B package -DskipTests --file pom.xml
       
