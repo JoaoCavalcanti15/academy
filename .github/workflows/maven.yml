@@ -15,9 +15,5 @@ jobs:
     - uses: JoaoCavalcanti15/academy/.github/actions/docker_build@main
       with:
         dockerfile_path: ./src/main/docker/Dockerfile.jvm
-        image_name: academy
-        tag_name: my-custom-tag  
-        
-    - uses: JoaoCavalcanti15/academy/.github/actions/docker_build@main
-      with:
-        image_name: academy  
+        image_name: "academy"
+        tag_name: "my-custom-tag"  
