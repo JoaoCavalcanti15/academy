@@ -17,8 +17,7 @@ runs:
   steps:
     - run: |
         echo "Update me with the necessary steps to build the application"
-      shell: bash
-      
+      shell: bash 
     - name: Determine Docker tag
       shell: bash
       run: |
@@ -27,7 +26,6 @@ runs:
         else
             echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
         fi
-
     - name: Create new Docker image
       shell: bash
       run: |
@@ -37,7 +35,6 @@ runs:
             echo "DOCKER_IMAGE_NAME=${{ inputs.image_name }}" >> $GITHUB_ENV
         fi
         docker build . --file "${{ inputs.path_dockerfile }}" --tag "${{ inputs.tag_name }}"
-
     - name: List Docker images
       shell: bash
       run: docker images
