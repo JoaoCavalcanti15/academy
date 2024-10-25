@@ -14,6 +14,6 @@ jobs:
     - uses: JoaoCavalcanti15/academy/.github/actions/maven_build@main
     - uses: JoaoCavalcanti15/academy/.github/actions/docker_build@main
       with:
-        dockerfile_path: ./src/main/docker/Dockerfile.jvm
+        path_dockerfile: ./src/main/docker/Dockerfile.jvm
         image_name: "academy"
         tag_name: "my-custom-tag"  
