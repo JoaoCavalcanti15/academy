@@ -31,8 +31,12 @@ runs:
     - name: Create new Docker image
       shell: bash
       run: |
-        echo "DOCKER_IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
-        docker build . --file "${{ inputs.path_dockerfile }}" --tag "$IMAGE_NAME"
+        if [ -z "${{ inputs.image_name }}" ]; then
+            echo "DOCKER_IMAGE_NAME=$(date +%s)" >> $GITHUB_ENV
+        else
+            echo "DOCKER_IMAGE_NAME=${{ inputs.image_name }}" >> $GITHUB_ENV
+        fi
+        docker build . --file "${{ inputs.path_dockerfile }}" --tag "${{ inputs.tag_name }}"
 
     - name: List Docker images
       shell: bash
