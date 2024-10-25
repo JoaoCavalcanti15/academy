@@ -20,8 +20,8 @@ jobs:
     - uses: JoaoCavalcanti15/academy/.github/actions/docker_push@main
       with:
         docker_image: "academy"
-        docker_username: secrets.DOCKERHUB_USERNAME
-        docker_token: secrets.DOCKERHUB_TOKEN
+        docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
+        docker_token: ${{ secrets.DOCKERHUB_TOKEN }}
 
 
 
