@@ -24,8 +24,8 @@ runs:
     - name: Re-tag docker image
       shell: bash
       run: |
-        docker tag "${{ inputs.docker_image }}" "${{ inputs.docker_image }}/${{ inputs.docker_image }}"
+        docker tag "${{ inputs.docker_image }}" "${{ inputs.docker_image }}:${{ inputs.docker_image }}"
     - name: Push docker image
       shell: bash
       run: |
-        docker push "${{ inputs.docker_image }}/${{ inputs.docker_image }}"
+        docker push "${{ inputs.docker_image }}:${{ inputs.docker_image }}"
