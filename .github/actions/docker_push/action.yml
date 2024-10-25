@@ -1,0 +1,28 @@
+name: Build
+description: Build application with Maven and create a new Docker image
+inputs:
+  docker_username:
+    description: "Docker username"
+    required: true
+  docker_image:
+    description: "Docker image"
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: |
+        echo "Update me with the necessary steps to build the application"
+      shell: bash
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Re-tag docker image
+      shell: bash
+      run: |
+        docker image tag "${{ inputs.docker_username }}" "${{ inputs.docker_username }}/${{ inputs.docker_image }}"
+    - name: Push docker image
+      shell: bash
+      run: |
+        docker push "${{ inputs.docker_username }}/${{ inputs.docker_image }}"
